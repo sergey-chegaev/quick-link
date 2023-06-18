@@ -1,0 +1,50 @@
+body {
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
+
+h1 {
+    color: #333;
+    margin: 5px;
+}
+
+div {
+    margin-bottom: 5px;
+}
+
+.link-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.link-row p,
+.link-row input {
+    flex: 1 1 50%;
+}
+
+p {
+    margin: 0 5px;
+}
+
+#main-buttons, #bottom-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#bottom-buttons {
+    flex-direction: row; /* make "Close" and "Options" buttons on one line */
+}
+
+#options, #close {
+    width: 45%; /* slightly less than half width to accommodate for the margin */
+    margin: 5px 2.5%;
+}

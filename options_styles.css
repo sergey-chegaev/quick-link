@@ -1,0 +1,46 @@
+h1 {
+    color: #333;
+    margin: 5px;
+}
+
+div {
+    margin-bottom: 5px;
+}
+
+label {
+    margin-right: 5px;
+    text-align: right;
+    clear: both;
+    float:left;
+}
+
+#addLink {
+    width: 80%;
+}
+
+button.remove {
+    width: auto;
+}
+
+#configs-container {
+    max-width: 75%;
+}
+
+#linksContainer {
+    margin-left: 5px;
+}
+
+div.link-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+input.url-name {
+    flex-grow: 0;
+}
+
+input.url-input {
+    flex-grow: 1;
+}
