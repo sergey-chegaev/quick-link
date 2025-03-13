@@ -17,6 +17,10 @@ The Quick link Chrome Extension allows users to define and open predefined links
 4. Click on "Load unpacked" and select the extension's folder.
 5. The Quick link Chrome Extension should now be installed and active.
 
+## Compatibility
+
+The extension is compatible with Chrome version 134.0.6998.46.
+
 ## Usage
 
 1. Click on the extension icon in the Chrome toolbar to open the popup window.

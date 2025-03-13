@@ -1,14 +1,15 @@
-// Load existing links from storage
-chrome.storage.sync.get('links', function(data) {
+async function loadLinks() {
+    let data = await chrome.storage.sync.get('links');
     if (data.links) {
         data.links.forEach(addLinkField);
     } else {
-        var defaultLink = {name: "Link 1", url: "http://example.com"};
-        chrome.storage.sync.set({links: [defaultLink]}, function() {
-            addLinkField(defaultLink);
-        });
+        let defaultLink = {name: "Link 1", url: "http://example.com"};
+        await chrome.storage.sync.set({links: [defaultLink]});
+        addLinkField(defaultLink);
     }
-});
+}
+
+loadLinks();
 
 // Add new link input field with a remove button
 document.getElementById('addLink').onclick = function() {
@@ -58,7 +59,7 @@ function addLinkField(link) {
     document.getElementById('linksContainer').appendChild(div);
 }
 
-function saveLinks() {
+async function saveLinks() {
     var divs = document.getElementById('linksContainer').getElementsByTagName('div');
     var links = [];
     for (var i = 0; i < divs.length; i++) {
@@ -66,5 +67,5 @@ function saveLinks() {
         var link = {name: inputs[0].value, url: inputs[1].value};
         links.push(link);
     }
-    chrome.storage.sync.set({links: links});
+    await chrome.storage.sync.set({links: links});
 }
