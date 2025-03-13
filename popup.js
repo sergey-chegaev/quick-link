@@ -1,5 +1,5 @@
-// Load existing links from storage and create input fields
-chrome.storage.sync.get('links', function(data) {
+async function loadLinks() {
+    let data = await chrome.storage.sync.get('links');
     if (data.links) {
         data.links.forEach(function(link, index) {
             var div = document.createElement('div');
@@ -50,7 +50,9 @@ chrome.storage.sync.get('links', function(data) {
             }
         }
     }
-});
+}
+
+loadLinks();
 
 document.getElementById('options').onclick = function() {
     if (chrome.runtime.openOptionsPage) {
