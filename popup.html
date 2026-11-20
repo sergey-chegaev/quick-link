@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="common.css">
-    <link rel="stylesheet" type="text/css" href="popup_styles.css">
+  <meta charset="utf-8">
+  <title>Quick link</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="popup_styles.css">
 </head>
 <body>
-<h1>Quick link</h1>
+<header class="bar">
+  <span class="logo" aria-hidden="true">Q</span>
+  <h1>Quick link</h1>
+</header>
 
-<div id="linksContainer">
-    <!-- Input fields will be dynamically added here -->
-</div>
+<!-- Rows are made by popup.js. No field gets focus on open: the first Tab goes to the first field. -->
+<main id="links"></main>
 
-<div id="main-buttons">
-    <button id="currentTab">Current Tab</button>
-    <button id="newTab">New Tab (or press 'Enter')</button>
-</div>
+<p id="message" role="alert" hidden></p>
 
-<div id="bottom-buttons">
-    <button id="options">Options</button>
-    <button id="close">Close</button>
-</div>
+<footer>
+  <span><kbd>Tab</kbd> next</span>
+  <span><kbd>Enter</kbd> new tab</span>
+  <span><kbd>Shift+Enter</kbd> current tab</span>
+  <button id="settings" type="button" aria-label="Settings" title="Settings">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+  </button>
+</footer>
 
-<script src="popup.js"></script>
+<script type="module" src="popup.js"></script>
 </body>
 </html>

@@ -1,19 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="common.css">
-    <link rel="stylesheet" type="text/css" href="options_styles.css">
+  <meta charset="utf-8">
+  <title>Quick link settings</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="options_styles.css">
 </head>
 <body>
-<h1>Links configuration</h1>
-<div id="configs-container">
-    <div id="linksContainer">
-        <!-- Link fields will be dynamically added here -->
+<div class="page">
+  <header class="top">
+    <span class="logo" aria-hidden="true">Q</span>
+    <h1>Quick link settings</h1>
+    <p id="save-status" class="save-status" role="status">Saved automatically. Synced with your Chrome profile.</p>
+  </header>
+
+  <section class="card general" aria-label="General settings">
+    <div class="item shortcut">
+      <span class="item-label">Open the popup with keys</span>
+      <div class="item-row">
+        <kbd id="shortcut" hidden></kbd>
+        <span id="shortcut-none" class="muted">Not set</span>
+        <button id="shortcut-button" type="button" class="ghost">Set shortcut</button>
+      </div>
+      <span class="hint">Chrome opens its shortcuts page. Find Quick link there and push the keys you want.</span>
     </div>
+    <div class="item">
+      <span class="item-label">Address bar</span>
+      <div class="item-row">
+        <span class="chip">ql</span>
+        <span class="muted">Type ql, push Space, then a keyword and values</span>
+      </div>
+    </div>
+    <div class="item">
+      <label class="item-label" for="theme">Theme</label>
+      <select id="theme">
+        <option value="system">Same as system</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+    <div class="item">
+      <span class="item-label">Backup and share</span>
+      <div class="item-row">
+        <button id="import" type="button" class="ghost">Import JSON</button>
+        <button id="export" type="button" class="ghost">Export JSON</button>
+        <input id="import-file" type="file" accept="application/json,.json" hidden>
+      </div>
+    </div>
+    <div class="item wide">
+      <span class="item-label">Keys in the popup (same for all links)</span>
+      <div class="item-row keys">
+        <span><kbd>Tab</kbd> next field</span>
+        <span><kbd>Enter</kbd> open in new tabs</span>
+        <span><kbd>Shift+Enter</kbd> open in current tab</span>
+      </div>
+      <span class="hint">Enter opens each link that has a typed value and all required values. With Shift+Enter, the first link opens in the current tab and the others in new tabs.</span>
+    </div>
+    <div class="item storage">
+      <span class="item-label">Sync storage</span>
+      <div id="meter" class="meter" role="meter" aria-label="Sync storage used" aria-valuemin="0" aria-valuemax="8192"><div id="meter-bar"></div></div>
+      <span id="storage-note" class="hint"></span>
+    </div>
+  </section>
 
-    <button id="addLink">Add Link</button>
+  <div class="main">
+    <section class="card list" aria-labelledby="links-title">
+      <div class="list-head">
+        <h2 id="links-title">Links <span id="count" class="muted"></span></h2>
+        <button id="add" type="button" class="primary">+ Add link</button>
+      </div>
+      <ul id="rows"></ul>
+      <p class="hint">Drag the grip to change the order. On a selected row, Alt+↑ and Alt+↓ also move it. The popup shows links in this order.</p>
+    </section>
+
+    <section class="card editor" aria-label="Link details">
+      <p id="no-links" class="empty" hidden>No links yet. Push Add link to make one.</p>
+      <div id="form" hidden>
+        <div class="form-row">
+          <div class="field grow3">
+            <label for="name">Name</label>
+            <input id="name" type="text" autocomplete="off">
+          </div>
+          <div class="field grow1">
+            <label for="keyword">Address bar keyword</label>
+            <input id="keyword" type="text" class="mono" placeholder="pr" autocomplete="off" spellcheck="false" aria-describedby="keyword-help">
+            <span id="keyword-help" class="hint"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="url">URL template</label>
+          <input id="url" type="text" class="mono" autocomplete="off" spellcheck="false" aria-describedby="url-help">
+          <div id="url-preview" class="segs mono"></div>
+          <span id="url-help" class="hint"></span>
+        </div>
+
+        <div class="field">
+          <h3>Variables</h3>
+          <div id="legacy" class="legacy" hidden>
+            <span>This link has no variable. Quick link adds the typed value at the end of the URL.</span>
+            <button id="convert" type="button">Add {value} at the end</button>
+          </div>
+          <div id="vars" class="vars">
+            <div class="vars-head"><span>Variable</span><span>Required</span><span>Default value (optional only)</span><span>Order</span></div>
+            <div id="vars-rows"></div>
+            <p class="hint vars-hint">This order is the order of the fields in the popup and of the values in the address bar.</p>
+          </div>
+        </div>
+
+        <div class="try">
+          <h3>Try it</h3>
+          <div id="try-fields" class="try-fields"></div>
+          <div id="try-url" class="segs mono"></div>
+          <span id="try-note" class="hint"></span>
+        </div>
+
+        <div class="actions">
+          <button id="delete" type="button" class="danger">Delete link</button>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
-
-<script src="options.js"></script>
+<script type="module" src="options.js"></script>
 </body>
 </html>

@@ -1,50 +1,132 @@
 body {
-    padding: 10px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 300px;
+  width: 400px;
+  background: var(--card);
 }
 
-h1 {
-    color: #333;
-    margin: 5px;
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 12px;
+  background: var(--brand);
+  color: #FFFFFF;
 }
 
-div {
-    margin-bottom: 5px;
+.bar .logo { background: #FFFFFF; color: var(--brand); }
+
+.bar h1 { font-size: 14px; font-weight: 600; }
+
+main {
+  max-height: 460px;
+  overflow-y: auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.link-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.link-row p,
-.link-row input {
-    flex: 1 1 50%;
+/* Names up to about 18 characters fit on one line. Longer names wrap to two lines, then end with "…". */
+.row label {
+  flex: none;
+  width: 150px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--label);
 }
 
-p {
-    margin: 0 5px;
+.row .name {
+  flex: 1;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
-#main-buttons, #bottom-buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.row .kw {
+  flex: none;
+  line-height: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--hint);
 }
 
-#bottom-buttons {
-    flex-direction: row; /* make "Close" and "Options" buttons on one line */
+.fields {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 4px;
 }
 
-#options, #close {
-    width: 45%; /* slightly less than half width to accommodate for the margin */
-    margin: 5px 2.5%;
+.fields input {
+  flex: 1 1 0;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 5px;
+  font-size: 12px;
 }
+
+.empty {
+  padding: 20px 0;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.empty button {
+  margin-top: 8px;
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--brand);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+#message {
+  display: flex;
+  margin: 0 12px 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: var(--error-bg);
+  color: var(--error);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 6px 6px 12px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+#settings {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+}
+
+#settings:hover { background: var(--hover); color: var(--text); }

@@ -1,24 +1,126 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f8fc;
+/* Colour tokens for both themes. data-theme="light" or "dark" overrides the system theme. */
+:root {
+  color-scheme: light dark;
+  --brand: #65358C;
+  --page: light-dark(#F4F4F5, #0F0F11);
+  --card: light-dark(#FFFFFF, #18181B);
+  --line: light-dark(#E4E4E7, #2E2E33);
+  --text: light-dark(#18181B, #FAFAFA);
+  --label: light-dark(#3F3F46, #E4E4E7);
+  --muted: light-dark(#52525B, #A1A1AA);
+  --hint: light-dark(#71717A, #A1A1AA);
+  --field: light-dark(#FFFFFF, #27272A);
+  --field-line: light-dark(#D4D4D8, #3F3F46);
+  --sub: light-dark(#FAFAFA, #1F1F23);
+  --hover: light-dark(#F4F4F5, #27272A);
+  --accent: light-dark(#65358C, #B794D9);
+  --ring: light-dark(rgba(101, 53, 140, 0.22), rgba(183, 148, 217, 0.3));
+  --default: light-dark(#65358C, #C9A8E6);
+  --brand-text: light-dark(#4F2870, #E0D3EC);
+  --brand-tint: light-dark(#EEE6F5, #2E2340);
+  --selected: light-dark(#F7F3FA, #241C30);
+  --selected-line: light-dark(#E0D3EC, #4A3566);
+  --error: light-dark(#B91C1C, #F87171);
+  --error-ring: light-dark(rgba(185, 28, 28, 0.15), rgba(248, 113, 113, 0.25));
+  --error-bg: light-dark(#FEF2F2, #2C1B1B);
+  --ok: light-dark(#047857, #34D399);
+  --warn-bg: light-dark(#FFFBEB, #2A2112);
+  --warn-text: light-dark(#78350F, #FCD34D);
+  --warn-line: light-dark(#D97706, #B45309);
+  --default-bg: light-dark(#E4E4E7, #3F3F46);
+  --miss-bg: light-dark(#FFF1F2, #3F1D24);
+  --miss-text: light-dark(#9F1239, #FDA4AF);
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-input[type="text"] {
-    margin-right: 10px;
-    padding: 5px;
-    flex-grow: 1;
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
 }
+
+h1, h2, h3, p { margin: 0; }
+
+.mono { font-family: var(--mono); }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+kbd {
+  font-family: inherit;
+  font-size: 11px;
+  padding: 0 4px;
+  border: 1px solid var(--field-line);
+  border-radius: 4px;
+  background: var(--sub);
+  color: var(--text);
+}
+
+input[type="text"], select {
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid var(--field-line);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+}
+
+input::placeholder { color: var(--hint); }
+
+/* The value that an empty field uses: the default of an optional variable. */
+input.has-default::placeholder { color: var(--default); font-style: italic; }
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error-ring);
+}
+
+input:disabled {
+  background: var(--sub);
+  color: var(--hint);
+  cursor: not-allowed;
+}
+
+input[type="checkbox"] { accent-color: var(--accent); margin: 0; }
 
 button {
-    padding: 5px 10px;
-    background-color: rgb(88, 101, 242);
-    border-radius: 5px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 
-button:hover {
-    background-color: rgb(71, 82, 196);
+button:focus-visible, input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 0 5px;
+  border-radius: 4px;
+  color: var(--brand-text);
+  background: var(--brand-tint);
 }

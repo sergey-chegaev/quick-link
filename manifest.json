@@ -1,19 +1,32 @@
 {
   "manifest_version": 3,
   "name": "Quick link",
-  "version": "0.0.2",
-  "permissions": ["tabs", "storage"],
-  "host_permissions": ["http://*/*", "https://*/*"],
-  "options_page": "options.html",
+  "version": "0.1.0",
+  "description": "Open your link templates with typed values: issues, pull requests, admin pages and more.",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
   "action": {
     "default_popup": "popup.html",
+    "default_title": "Quick link",
     "default_icon": {
-      "16": "images/icon16.png",
-      "64": "images/icon64.png",
-      "128": "images/icon128.png"
+      "16": "images/toolbar16.png",
+      "32": "images/toolbar32.png"
     }
   },
+  "options_page": "options.html",
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "omnibox": {
+    "keyword": "ql"
+  },
+  "commands": {
+    "_execute_action": {}
   }
 }
